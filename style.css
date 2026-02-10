@@ -1,19 +1,20 @@
 body {
   height: 100vh;
-  background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Comic Sans MS", cursive;
+  font-family: "Poppins", sans-serif;
   overflow: hidden;
 }
 
 .container {
   background: white;
-  padding: 40px;
+  padding: 40px 50px;
   border-radius: 25px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  position: relative;
 }
 
 h1 {
@@ -21,13 +22,13 @@ h1 {
 }
 
 .buttons {
-  margin-top: 25px;
+  margin-top: 30px;
   position: relative;
-  height: 80px;
+  height: 90px;
 }
 
 button {
-  padding: 15px 30px;
+  padding: 15px 32px;
   font-size: 20px;
   border: none;
   border-radius: 15px;
@@ -41,29 +42,28 @@ button {
 }
 
 #noBtn {
-  background: #777;
+  background: #888;
   color: white;
   position: absolute;
 }
 
-/* Shake animation */
+/* Shake effect */
 .shake {
   animation: shake 0.4s;
 }
 
 @keyframes shake {
   0% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  50% { transform: translateX(5px); }
-  75% { transform: translateX(-5px); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-6px); }
   100% { transform: translateX(0); }
 }
 
 /* Floating hearts */
 .heart {
   position: absolute;
-  color: red;
-  font-size: 20px;
+  font-size: 22px;
   animation: float 4s linear forwards;
 }
 
@@ -73,7 +73,7 @@ button {
     opacity: 1;
   }
   to {
-    transform: translateY(-600px);
+    transform: translateY(-700px);
     opacity: 0;
   }
 }
