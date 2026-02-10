@@ -1,32 +1,59 @@
-let noCount = 0;
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const text = document.getElementById("text");
+const container = document.getElementById("container");
 
-const questions = [
-  "Really? 🥺",
-  "Are you sure? 😢",
-  "Think again 💔",
-  "Last chance 😭",
-  "You broke my heart 💀"
+let noClicks = 0;
+
+const messages = [
+  "Wait… what? 😳",
+  "Really sure? 🥺",
+  "My heart is cracking 💔",
+  "That was rude 😭",
+  "I’ll cry now… 😢",
+  "Okay stop 😵‍💫"
 ];
 
-function noClicked() {
-  const question = document.getElementById("question");
-  const noBtn = document.getElementById("noBtn");
+// Move NO button on hover (evil)
+noBtn.addEventListener("mouseenter", () => {
+  const x = Math.random() * 200 - 100;
+  const y = Math.random() * 60 - 30;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
 
-  if (noCount < questions.length) {
-    question.innerText = questions[noCount];
-    noCount++;
+// NO clicked
+noBtn.addEventListener("click", () => {
+  noClicks++;
+  text.innerText = messages[Math.min(noClicks, messages.length - 1)];
+  
+  // Grow YES button
+  yesBtn.style.transform = `scale(${1 + noClicks * 0.15})`;
 
-    // Move NO button randomly
-    noBtn.style.top = Math.random() * 100 - 50 + "px";
-    noBtn.style.left = Math.random() * 100 - 50 + "px";
-  } else {
+  // Shake screen
+  container.classList.add("shake");
+  setTimeout(() => container.classList.remove("shake"), 400);
+
+  if (noClicks > 4) {
     noBtn.style.display = "none";
   }
-}
+});
 
-function yesClicked() {
-  document.body.innerHTML = `
-    <h1 style="color:red;">Yayyy! 💘😍<br>You are my Valentine! 💕</h1>
-  `;
-}
+// YES clicked
+yesBtn.addEventListener("click", () => {
+  container.innerHTML = `<h1>I knew it 😘💘<br>You are my Valentine! 💍</h1>`;
+  heartRain();
+});
 
+// Hearts effect
+function heartRain() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "❤️";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = "100%";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 4000);
+  }, 300);
+}
